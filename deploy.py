@@ -10,7 +10,7 @@ APIGEE_PASSWORD = sys.argv[4]
 OPTIONS = sys.argv[5]
 OVERRIDE_DELAY = sys.argv[6]
 DELAY = sys.argv[7]
-COMPONENT_JSON = sys.argv[8]
+COMPONENT_JSON = "{ "kvms": false, "targetServers": false, "sharedflows": [ ], "proxies":[ "echo" ], "apiProducts": false, "developers": false, "apps": false, "tests": false }"
 # load components json
 try:
     # loading components json from build parameters
