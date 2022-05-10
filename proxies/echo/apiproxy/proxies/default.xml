@@ -14,7 +14,7 @@
     <HTTPProxyConnection>
         <BasePath>/echo</BasePath>
         <Properties/>
-        <VirtualHost>external</VirtualHost>
+        <VirtualHost>default</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="default">
         <TargetEndpoint>default</TargetEndpoint>
