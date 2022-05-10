@@ -10,7 +10,6 @@ APIGEE_PASSWORD = sys.argv[4]
 OPTIONS = sys.argv[5]
 OVERRIDE_DELAY = sys.argv[6]
 DELAY = sys.argv[7]
-COMPONENT_JSON = sys.argv[8]
 
 # load components json
 try:
