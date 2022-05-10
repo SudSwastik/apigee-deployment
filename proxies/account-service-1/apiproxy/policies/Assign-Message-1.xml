@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Message-1">
+    <DisplayName>Assign Message-1</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>product-proxy-name</Name>
+        <Template>{apiproduct.name}-{apiproxy.name}</Template>
+    </AssignVariable>
+    <!--<AssignVariable>-->
+    <!--    <Name>is_allow_listed</Name>-->
+    <!--    <Value>true</Value>-->
+    <!--</AssignVariable>-->
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

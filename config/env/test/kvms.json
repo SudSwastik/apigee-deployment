@@ -1,0 +1,130 @@
+[
+    {
+        "encrypted": true,
+        "entry": [
+            {
+                "name": "secret",
+                "value": "*****"
+            }
+        ],
+        "name": "fasttrack-JWTSecret"
+    },
+    {
+        "encrypted": true,
+        "entry": [
+            {
+                "name": "authorize_path",
+                "value": "*****"
+            },
+            {
+                "name": "client_id",
+                "value": "*****"
+            },
+            {
+                "name": "client_secret",
+                "value": "*****"
+            },
+            {
+                "name": "host",
+                "value": "*****"
+            },
+            {
+                "name": "redirect_uri",
+                "value": "*****"
+            },
+            {
+                "name": "refresh_expiry",
+                "value": "*****"
+            },
+            {
+                "name": "token_expiry",
+                "value": "*****"
+            },
+            {
+                "name": "token_path",
+                "value": "*****"
+            },
+            {
+                "name": "userinfo_path",
+                "value": "*****"
+            }
+        ],
+        "name": "fasttrack-Auth0"
+    },
+    {
+        "encrypted": true,
+        "entry": [
+            {
+                "name": "token",
+                "value": "*****"
+            }
+        ],
+        "name": "fasttrack-LogglyToken"        
+    },
+    {
+        "encrypted": true,
+        "entry": [
+            {
+                "name": "client_id",
+                "value": "*****"
+            },
+            {
+                "name": "client_secret",
+                "value": "*****"
+            },
+            {
+                "name": "password",
+                "value": "*****"
+            },
+            {
+                "name": "username",
+                "value": "*****"
+            }
+        ],
+        "name": "fasttrack-LoginCredentials"        
+    },
+    {
+        "encrypted": false,
+        "entry": [
+            {
+                "name": "password",
+                "value": "TestUserPassword"
+            },
+            {
+                "name": "username",
+                "value": "TestUser"
+            }
+        ],
+        "name": "fasttrack-UserCredentials"
+    },
+    {
+        "encrypted": true,
+        "entry": [
+            {
+                "name": "appid",
+                "value": "*****"
+            }
+        ],
+        "name": "fasttrack-WeatherAPI"        
+    },
+    {
+        "encrypted": false,
+        "entry": [
+            {
+                "name": "Path",
+                "value": "/data/2.5/weather"
+            }
+        ],
+        "name": "fasttrack-WeatherAPI-Path"        
+    },
+    {
+        "encrypted": false,
+        "entry": [
+            {
+                "name": "url",
+                "value": "https://eu-west1-partner19-dev.apigee.net/oauthapp/login"
+            }
+        ],
+        "name": "fasttrack-LoginAppService"        
+    }    
+]

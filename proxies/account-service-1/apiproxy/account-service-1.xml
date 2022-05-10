@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="account-service-1">
+    <Basepaths>/v1/accounts</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1644398204374</CreatedAt>
+    <CreatedBy>sudarshan4309@gmail.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>account-service-1</DisplayName>
+    <LastModifiedAt>1651726293931</LastModifiedAt>
+    <LastModifiedBy>sudarshan4309@gmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:35630aeaa378915d82b9ae8b3b459e7093109ec39f43f5641af602f41bbc9b6ba3900d1bd5af1fca24c5c75d0354d60871e4fba857876d565dbfc0ef41500a2e:ap-northeast-1</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Message-1</Policy>
+        <Policy>JS-CheckAllowList</Policy>
+        <Policy>JavaScript-1</Policy>
+        <Policy>Key-Value-Map-Operations-1</Policy>
+        <Policy>Raise-Fault-1</Policy>
+        <Policy>remove-header-authorization</Policy>
+        <Policy>verify-oauth-v2-access-token</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://JS-CheckAllowList.js</Resource>
+        <Resource>jsc://JavaScript-1.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

@@ -1,0 +1,32 @@
+{
+    "kvms": true,
+    "targetServers": true,
+    "sharedflows": [
+        "fasttrack-CORS",
+        "fasttrack-GenerateJWT",
+        "fasttrack-JSONThreatProtection",
+        "fasttrack-Quota",
+        "fasttrack-RegexProtection",
+        "fasttrack-SpikeArrest",
+        "fasttrack-VerifyAccessToken",
+        "fasttrack-VerifyJWT",
+        "fasttrack-XMLThreatProtection",
+        "fasttrack-BasicAuthDecode",
+        "fasttrack-ErrorHandling"
+    ],
+    "proxies":[
+        "fasttrack-AuthCode-Auth0",
+        "fasttrack-JWT",
+        "fasttrack-OAuthAuthCode",
+        "fasttrack-OAuthClient",
+        "fasttrack-OAuthLoginApp",
+        "fasttrack-OAuthPassword",
+        "fasttrack-WeatherAPI-Auth0",
+        "fasttrack-WeatherAPI-JWT",
+        "fasttrack-WeatherAPI-OAuth"
+      ],
+    "apiProducts": true,
+    "developers": true,
+    "apps": true,
+    "tests": true
+}

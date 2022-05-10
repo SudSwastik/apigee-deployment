@@ -1,0 +1,226 @@
+{
+  "ansah.zargar@srijan.net": [
+    {
+      "attributes": [
+        {
+          "name": "Access-Control-Allow-Headers",
+          "value": "origin, Authorization, x-requested-with, accept, access_token"
+        },
+        {
+          "name": "Access-Control-Allow-Methods",
+          "value": "GET, POST, DELETE, OPTIONS"
+        },
+        {
+          "name": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "name": "Access-Control-Max-Age",
+          "value": "3628800"
+        },
+        {
+          "name": "DisplayName",
+          "value": "fasttrack-weatherapi-auth0"
+        },
+        {
+          "name": "Notes",
+          "value": ""
+        },
+        {
+          "name": "ratelimit",
+          "value": "10pm"
+        }
+      ],
+      "callbackUrl": "https://www.google.com",
+      "apiProducts": ["fasttrack-weatherapi-oauth-auth0"],
+      "consumerKey": "9czFbGHAobb6VxxXo05maEAy6vuPDXIt",
+      "consumerSecret": "tlfGcRSnCTANRmGz",
+      "name": "fasttrack-weatherapi-auth0",
+      "scopes": [],
+      "status": "approved"
+    },
+    {
+      "attributes": [
+        {
+          "name": "Access-Control-Allow-Headers",
+          "value": "origin, Authorization, x-requested-with, accept, access_token"
+        },
+        {
+          "name": "Access-Control-Allow-Methods",
+          "value": "GET, POST, DELETE, OPTIONS"
+        },
+        {
+          "name": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "name": "Access-Control-Max-Age",
+          "value": "3628800"
+        },
+        {
+          "name": "DisplayName",
+          "value": "fasttrack-weatherapi-oauth"
+        },
+        {
+          "name": "Notes",
+          "value": ""
+        }
+      ],
+      "callbackUrl": "https://www.google.com",
+      "apiProducts": ["fasttrack-weatherapi-oauth"],
+      "consumerKey": "m7kuAAysMvENh0xDp7RVsV1bqnGNktVd",
+      "consumerSecret": "FY1HFNWgUtDg3i3u",
+      "name": "fasttrack-weatherapi-oauth",
+      "scopes": [],
+      "status": "approved"
+    },
+    {
+      "attributes": [
+        {
+          "name": "Access-Control-Allow-Headers",
+          "value": "origin, Authorization, x-requested-with, accept, access_token"
+        },
+        {
+          "name": "Access-Control-Allow-Methods",
+          "value": "GET, POST, DELETE, OPTIONS"
+        },
+        {
+          "name": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "name": "Access-Control-Max-Age",
+          "value": "3628800"
+        },
+        {
+          "name": "DisplayName",
+          "value": "fasttrack-weatherapi-authcode"
+        },
+        {
+          "name": "Notes",
+          "value": ""
+        }
+      ],
+      "callbackUrl": "https://www.google.com",
+      "apiProducts": ["fasttrack-weatherapi-authcode"],
+      "consumerKey": "QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm",
+      "consumerSecret": "aaxCf3kP3ZuVDK2t",
+      "name": "fasttrack-weatherapi-authcode",
+      "scopes": [],
+      "status": "approved"
+    },
+    {
+      "attributes": [
+        {
+          "name": "Access-Control-Allow-Headers",
+          "value": "\t\norigin, Authorization, x-requested-with, accept, access_token"
+        },
+        {
+          "name": "Access-Control-Allow-Methods",
+          "value": "GET, POST, DELETE, OPTIONS"
+        },
+        {
+          "name": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "name": "Access-Control-Max-Age",
+          "value": "3628800"
+        },
+        {
+          "name": "DisplayName",
+          "value": "fasttrack-loginapp"
+        },
+        {
+          "name": "Notes",
+          "value": ""
+        }
+      ],
+      "callbackUrl": "",
+      "apiProducts": ["fasttrack-loginapp","fasttrack-weatherapi-authcode"],
+      "consumerKey": "LzdnT6QRy05WzXMtabfn6BSeAUdA1PGF",
+      "consumerSecret": "7ATYDtTIwdkOdkvK",
+      "name": "fasttrack-loginapp",
+      "scopes": [],
+      "status": "approved"
+    },
+    {
+      "attributes": [
+        {
+          "name": "Access-Control-Allow-Headers",
+          "value": "origin, Authorization, x-requested-with, accept, access_token"
+        },
+        {
+          "name": "Access-Control-Allow-Methods",
+          "value": "GET, POST, DELETE, OPTIONS"
+        },
+        {
+          "name": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "name": "Access-Control-Max-Age",
+          "value": "3628800"
+        },
+        {
+          "name": "DisplayName",
+          "value": "fasttrack-weatherapi-oauthclient"
+        },
+        {
+          "name": "Notes",
+          "value": ""
+        },
+        {
+          "name": "ratelimit",
+          "value": "10pm"
+        }
+      ],
+      "callbackUrl": "",
+      "apiProducts": ["fasttrack-weatherapi-oauthclient"],
+      "consumerKey": "12oBIi5KQVyKo0Gt077AVOHFvUjqTGGu",
+      "consumerSecret": "H03vDZ3bcyaxKDeU",
+      "name": "fasttrack-weatherapi-oauthclient",
+      "scopes": [],
+      "status": "approved"
+    },
+    {
+      "attributes": [
+        {
+          "name": "Access-Control-Allow-Headers",
+          "value": "origin, Authorization, x-requested-with, accept, access_token"
+        },
+        {
+          "name": "Access-Control-Allow-Methods",
+          "value": "GET, POST, DELETE, OPTIONS"
+        },
+        {
+          "name": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "name": "Access-Control-Max-Age",
+          "value": "3628800"
+        },
+        {
+          "name": "DisplayName",
+          "value": "fasttrack-weatherapi-jwt"
+        },
+        {
+          "name": "Notes",
+          "value": ""
+        },
+        {
+          "name": "ratelimit",
+          "value": "5pm"
+        }
+      ],
+      "callbackUrl": "",
+      "apiProducts": ["fasttrack-weatherapi-jwt"],
+      "consumerKey": "9SWhSi6Tqv1ksJZ2ywjojFTc8ljpvZAA",
+      "consumerSecret": "i9hFMW8StBG5b8QU",
+      "name": "fasttrack-weatherapi-jwt",
+      "scopes": [],
+      "status": "approved"
+    }
+  ]
+}

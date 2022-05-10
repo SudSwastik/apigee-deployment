@@ -1,0 +1,22 @@
+[
+  {
+    "host": "srijan-apigee.us.auth0.com",
+    "isEnabled": true,
+    "name": "auth0",
+    "port": 443,
+    "sSLInfo": {
+      "ciphers": [],
+      "clientAuthEnabled": "false",
+      "enabled": "true",
+      "ignoreValidationErrors": false,
+      "protocols": [],
+      "trustStore": ""
+    }
+  },
+  {
+    "host": "api.openweathermap.org",
+    "isEnabled": true,
+    "name": "WeatherAPI",
+    "port": 80
+  }
+]

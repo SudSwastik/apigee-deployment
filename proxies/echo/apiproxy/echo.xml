@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="12" name="echo">
+    <Basepaths>/echo</Basepaths>
+    <Basepaths>/echo</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1647083009199</CreatedAt>
+    <CreatedBy>sudarshan4309@gmail.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>echo</DisplayName>
+    <LastModifiedAt>1649747641729</LastModifiedAt>
+    <LastModifiedBy>sudarshan4309@gmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:fb0c7007e825964f8b3947ffbe4a02f555d5025322ca5419ba59256dbe75ca1aedebcd00d2a35ff8f48eefe1840b6ccf49e52cd13a430a777080b900dccf4b0a:ap-northeast-1</ManifestVersion>
+    <Policies/>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

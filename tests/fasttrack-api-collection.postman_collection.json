@@ -1,0 +1,4824 @@
+{
+	"info": {
+		"_postman_id": "a1cf9027-ce40-43fd-84ca-6e75e6c72e6c",
+		"name": "fasttrack-api-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "fasttrack-weatherapi-oauthclient",
+			"item": [
+				{
+					"name": "GenerateAccessToken",
+					"item": [
+						{
+							"name": "GenerateAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Created\", () => {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Response body should contain access_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"access_token\");",
+											"    pm.expect(response.access_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"expires_in\");",
+											"    pm.expect(response.expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"",
+											"",
+											"pm.collectionVariables.set(\"access_token\", response.access_token);",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "H03vDZ3bcyaxKDeU",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "12oBIi5KQVyKo0Gt077AVOHFvUjqTGGu",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "READ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{org}}-{{env}}.apigee.net/oauth/generate/token",
+									"protocol": "http",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"oauth",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "H03vDZ3bcyaxKDeU",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "12oBIi5KQVyKo0Gt077AVOHFvUjqTGGu",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "scope",
+											"value": "READ",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{org}}-{{env}}.apigee.net/oauth/generate/token",
+									"protocol": "http",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"oauth",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "H03vDZ3bcyaxKDeU",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "clientid",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "READ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{org}}-{{env}}.apigee.net/oauth/generate/token",
+									"protocol": "http",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"oauth",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "VerifyAccessToken",
+					"item": [
+						{
+							"name": "VerifyAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be OK\", () => {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json; charset=utf-8\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain coord property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"coord\");",
+											"    pm.expect(response.coord).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain weather property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"weather\");",
+											"    pm.expect(response.weather).to.be.a(\"array\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain base property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"base\");",
+											"    pm.expect(response.base).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain main property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"main\");",
+											"    pm.expect(response.main).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain visibility property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"visibility\");",
+											"    pm.expect(response.visibility).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain wind property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"wind\");",
+											"    pm.expect(response.wind).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain clouds property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"clouds\");",
+											"    pm.expect(response.clouds).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain dt property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"dt\");",
+											"    pm.expect(response.dt).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain sys property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"sys\");",
+											"    pm.expect(response.sys).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain timezone property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"timezone\");",
+											"    pm.expect(response.timezone).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain id property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"id\");",
+											"    pm.expect(response.id).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain name property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"name\");",
+											"    pm.expect(response.name).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain cod property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"cod\");",
+											"    pm.expect(response.cod).to.be.a(\"number\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Texas&scope=READ",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Texas"
+										},
+										{
+											"key": "scope",
+											"value": "READ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Delete&scope=READ",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Delete"
+										},
+										{
+											"key": "scope",
+											"value": "READ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INVALID TOKEN",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Texas",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Texas"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fasttrack-weatherapi-jwt",
+			"item": [
+				{
+					"name": "GenerateJWT",
+					"item": [
+						{
+							"name": "GenerateJWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Created\", () => {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain jwt property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"jwt\");",
+											"    pm.expect(response.jwt).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"jwt\", response.jwt);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "i9hFMW8StBG5b8QU",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "9SWhSi6Tqv1ksJZ2ywjojFTc8ljpvZAA",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/generate/jwt",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"generate",
+										"jwt"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{sd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{sd}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/generate/jwt",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"generate",
+										"jwt"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "VerifyJWT",
+					"item": [
+						{
+							"name": "VerifyJWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be OK\", () => {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json; charset=utf-8\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain coord property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"coord\");",
+											"    pm.expect(response.coord).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain weather property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"weather\");",
+											"    pm.expect(response.weather).to.be.a(\"array\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain base property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"base\");",
+											"    pm.expect(response.base).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain main property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"main\");",
+											"    pm.expect(response.main).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain visibility property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"visibility\");",
+											"    pm.expect(response.visibility).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain wind property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"wind\");",
+											"    pm.expect(response.wind).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain clouds property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"clouds\");",
+											"    pm.expect(response.clouds).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain dt property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"dt\");",
+											"    pm.expect(response.dt).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain sys property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"sys\");",
+											"    pm.expect(response.sys).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain timezone property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"timezone\");",
+											"    pm.expect(response.timezone).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain id property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"id\");",
+											"    pm.expect(response.id).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain name property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"name\");",
+											"    pm.expect(response.name).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain cod property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"cod\");",
+											"    pm.expect(response.cod).to.be.a(\"number\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/weather/verify?query=Hyderabad",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Hyderabad"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INVALID TOKEN",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/weather/verify?query=Hyderabad",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Hyderabad"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Badrequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/weather/verify?query=Delete",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Delete"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fasttrack-weatherapi-oauthPassword",
+			"item": [
+				{
+					"name": "GenerateAccessToken",
+					"item": [
+						{
+							"name": "GenerateAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Created\", () => {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain access_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"access_token\");",
+											"    pm.expect(response.access_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"expires_in\");",
+											"    pm.expect(response.expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"refresh_token\");",
+											"    pm.expect(response.refresh_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token_expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"refresh_token_expires_in\");",
+											"    pm.expect(response.refresh_token_expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"access_token\", response.access_token);",
+											"pm.collectionVariables.set(\"refresh_token\", response.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "FY1HFNWgUtDg3i3u",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "m7kuAAysMvENh0xDp7RVsV1bqnGNktVd",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "TestUser",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "TestUserPassword",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "READ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/oauth/generate/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"oauth",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "FY1HFNWgUtDg3i3u",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "m7kuAAysMvENh0xDp7RVsV1bqnGNktVd",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "TestUser",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "TestUserPassword",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "scope",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/oauth/generate/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"oauth",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "FY1HFNWgUtDg3i3u",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "clientid",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "TestUser",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "TestUserPassword",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "DELETE",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/oauth/generate/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"oauth",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RefreshAccessToken",
+					"item": [
+						{
+							"name": "RefreshAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Created\", () => {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain access_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"access_token\");",
+											"    pm.expect(response.access_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"expires_in\");",
+											"    pm.expect(response.expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"refresh_token\");",
+											"    pm.expect(response.refresh_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token_expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"refresh_token_expires_in\");",
+											"    pm.expect(response.refresh_token_expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"access_token\", response.access_token);",
+											"pm.collectionVariables.set(\"refresh_token\", response.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "FY1HFNWgUtDg3i3u",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "m7kuAAysMvENh0xDp7RVsV1bqnGNktVd",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/oauth/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"oauth",
+										"refresh",
+										"token"
+									],
+									"query": [
+										{
+											"key": "grant_type",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "FY1HFNWgUtDg3i3u",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "m7kuAAysMvENh0xDp7RVsV1bqnGNktVd",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/oauth/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"oauth",
+										"refresh",
+										"token"
+									],
+									"query": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "1ypeXIBqlFibBvAhTGArQ99azHK94f69",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/oauth/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"oauth",
+										"refresh",
+										"token"
+									],
+									"query": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RevokeAccessToken",
+					"item": [
+						{
+							"name": "RevokeAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 204\", () => {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be No Content\", () => {",
+											"    pm.response.to.have.status(\"No Content\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\");",
+											"});",
+											"",
+											"pm.test(\"Verify the 'Access-Control-Allow-Methods' is present\", function(){",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "access_token",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/oauth/revoke/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"oauth",
+										"revoke",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "VerifyAccessToken",
+					"item": [
+						{
+							"name": "VerifyAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be OK\", () => {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json; charset=utf-8\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain coord property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"coord\");",
+											"    pm.expect(response.coord).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain weather property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"weather\");",
+											"    pm.expect(response.weather).to.be.a(\"array\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain base property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"base\");",
+											"    pm.expect(response.base).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain main property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"main\");",
+											"    pm.expect(response.main).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain visibility property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"visibility\");",
+											"    pm.expect(response.visibility).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain wind property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"wind\");",
+											"    pm.expect(response.wind).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain clouds property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"clouds\");",
+											"    pm.expect(response.clouds).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain dt property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"dt\");",
+											"    pm.expect(response.dt).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain sys property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"sys\");",
+											"    pm.expect(response.sys).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain timezone property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"timezone\");",
+											"    pm.expect(response.timezone).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain id property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"id\");",
+											"    pm.expect(response.id).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain name property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"name\");",
+											"    pm.expect(response.name).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain cod property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"cod\");",
+											"    pm.expect(response.cod).to.be.a(\"number\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Texas",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Texas"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Delete",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Delete"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INVALID_TOKEN",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Texas",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Texas"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fasttrack-weatherapi-oauth-authcode",
+			"item": [
+				{
+					"name": "GenerateAuthcode",
+					"item": [
+						{
+							"name": "GenerateAuthCode",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code should be 302\", () => {",
+											"    pm.response.to.have.status(302);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be 'Found'\", () => {",
+											"    pm.response.to.have.status(\"Found\");",
+											"});",
+											"",
+											"pm.test(\"Should have Location header\", () => {",
+											"    pm.response.to.have.header(\"Location\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify the 'Access-Control-Allow-Methods' is present\", function(){",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/authorize?client_id=QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm&response_type=code&redirect_uri=https://www.google.com&scope=READ&state=1234567890",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm"
+										},
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com"
+										},
+										{
+											"key": "scope",
+											"value": "READ"
+										},
+										{
+											"key": "state",
+											"value": "1234567890"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/authorize?client_id=QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm&response_type=&redirect_uri=https://www.google.com&scope=READ",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm"
+										},
+										{
+											"key": "response_type",
+											"value": ""
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com"
+										},
+										{
+											"key": "scope",
+											"value": "READ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/authorize?client_id=&response_type=code&redirect_uri=https://www.google.com&scope=READ",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": ""
+										},
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com"
+										},
+										{
+											"key": "scope",
+											"value": "READ"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GenerateAccessToken",
+					"item": [
+						{
+							"name": "GenerateAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Created\", () => {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is application/json\", () => {",
+											"    pm.response.to.be.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain access_token property of type string\", () => {",
+											"    const responseBody = pm.response.json();",
+											"    pm.expect(responseBody).to.have.property(\"access_token\");",
+											"    pm.expect(responseBody.access_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain expires_in property of type string\", () => {",
+											"    const responseBody = pm.response.json();",
+											"    pm.expect(responseBody).to.have.property(\"expires_in\");",
+											"    pm.expect(responseBody.expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token property of type string\", () => {",
+											"    const responseBody = pm.response.json();",
+											"    pm.expect(responseBody).to.have.property(\"refresh_token\");",
+											"    pm.expect(responseBody.refresh_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token_expires_in property of type string\", () => {",
+											"    const responseBody = pm.response.json();",
+											"    pm.expect(responseBody).to.have.property(\"refresh_token_expires_in\");",
+											"    pm.expect(responseBody.refresh_token_expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"",
+											"const response = pm.response.json();",
+											"",
+											"pm.collectionVariables.set(\"access_token\", response.access_token);",
+											"pm.collectionVariables.set(\"refresh_token\", response.refresh_token);",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "aaxCf3kP3ZuVDK2t",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "6Aqie76h",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/generate/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "aaxCf3kP3ZuVDK2t",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/generate/token?grant_type=authorization_code",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"generate",
+										"token"
+									],
+									"query": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "client id",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "NmxvpnZrkhVmrATW",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "EuZyuMQC",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/generate/token?grant_type=authorization_code",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"generate",
+										"token"
+									],
+									"query": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RefreshAccessToken",
+					"item": [
+						{
+							"name": "RefreshAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Created\", () => {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain access_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"access_token\");",
+											"    pm.expect(response.access_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"expires_in\");",
+											"    pm.expect(response.expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"refresh_token\");",
+											"    pm.expect(response.refresh_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token_expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"refresh_token_expires_in\");",
+											"    pm.expect(response.refresh_token_expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"access_token\", response.access_token);",
+											"pm.collectionVariables.set(\"refresh_token\", response.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "aaxCf3kP3ZuVDK2t",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"refresh",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "aaxCf3kP3ZuVDK2t",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "QxmgMaHnrWuX0RglxdQPTrPPADoxGYrm",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "FukoWHrWWgx31P6EhlTcrSILxdfWfMjR",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"refresh",
+										"token"
+									],
+									"query": [
+										{
+											"key": "grant_type",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "client_Id",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "client_secret",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "FukoWHrWWgx31P6EhlTcrSILxdfWfMjR",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"refresh",
+										"token"
+									],
+									"query": [
+										{
+											"key": "grant_type",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "VerifyAccessToken",
+					"item": [
+						{
+							"name": "VerifyAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be OK\", () => {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json; charset=utf-8\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain coord property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"coord\");",
+											"    pm.expect(response.coord).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain weather property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"weather\");",
+											"    pm.expect(response.weather).to.be.a(\"array\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain base property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"base\");",
+											"    pm.expect(response.base).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain main property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"main\");",
+											"    pm.expect(response.main).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain visibility property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"visibility\");",
+											"    pm.expect(response.visibility).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain wind property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"wind\");",
+											"    pm.expect(response.wind).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain clouds property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"clouds\");",
+											"    pm.expect(response.clouds).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain dt property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"dt\");",
+											"    pm.expect(response.dt).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain sys property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"sys\");",
+											"    pm.expect(response.sys).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain timezone property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"timezone\");",
+											"    pm.expect(response.timezone).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain id property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"id\");",
+											"    pm.expect(response.id).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain name property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"name\");",
+											"    pm.expect(response.name).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain cod property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"cod\");",
+											"    pm.expect(response.cod).to.be.a(\"number\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Texas",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Texas"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Delete",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Delete"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "authhh",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v2/weather/verify?query=Texas",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v2",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Texas"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RevokeAccessToken",
+					"item": [
+						{
+							"name": "RevokeAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 204\", () => {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be No Content\", () => {",
+											"    pm.response.to.have.status(\"No Content\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\");",
+											"});",
+											"",
+											"pm.test(\"Verify the 'Access-Control-Allow-Methods' is present\", function(){",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "access_token",
+										"type": "text",
+										"value": "{{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/authcode/revoke/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"authcode",
+										"revoke",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fasttrack-weatherapi-auth0",
+			"item": [
+				{
+					"name": "Authorize",
+					"item": [
+						{
+							"name": "Authorize",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code should be 302\", () => {",
+											"    pm.response.to.have.status(302);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be 'Found'\", () => {",
+											"    pm.response.to.have.status(\"Found\");",
+											"});",
+											"",
+											"pm.test(\"Should have Location header\", () => {",
+											"    pm.response.to.have.header(\"Location\");",
+											"});",
+											"",
+											"pm.test(\"Verify the 'Access-Control-Allow-Methods' is present\", function(){",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/authorize?client_id=9czFbGHAobb6VxxXo05maEAy6vuPDXIt&response_type=code&scope=email openid profile&redirect_uri=https://www.google.com&state=1234567890",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "9czFbGHAobb6VxxXo05maEAy6vuPDXIt"
+										},
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "scope",
+											"value": "email openid profile"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com"
+										},
+										{
+											"key": "state",
+											"value": "1234567890"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/authorize?client_id=9czFbGHAobb6VxxXo05maEAy6vuPDXIt&response_type=&scope=READ&redirect_uri=https://eu-west1-partner19-dev.apigee.net/v1/auth0/redirect",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "9czFbGHAobb6VxxXo05maEAy6vuPDXIt"
+										},
+										{
+											"key": "response_type",
+											"value": ""
+										},
+										{
+											"key": "scope",
+											"value": "READ"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://eu-west1-partner19-dev.apigee.net/v1/auth0/redirect"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be 'Unauthorized'\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/authorize?client_id=&response_type=code&scope=READ&redirect_uri=https://eu-west1-partner19-dev.apigee.net/v1/auth0/redirect",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": ""
+										},
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "scope",
+											"value": "READ"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://eu-west1-partner19-dev.apigee.net/v1/auth0/redirect"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GenerateAccessToken",
+					"item": [
+						{
+							"name": "GenerateToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Created\", () => {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is application/json\", () => {",
+											"    pm.response.to.be.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain access_token property of type string\", () => {",
+											"    const responseBody = pm.response.json();",
+											"    pm.expect(responseBody).to.have.property(\"access_token\");",
+											"    pm.expect(responseBody.access_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain expires_in property of type string\", () => {",
+											"    const responseBody = pm.response.json();",
+											"    pm.expect(responseBody).to.have.property(\"expires_in\");",
+											"    pm.expect(responseBody.expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token property of type string\", () => {",
+											"    const responseBody = pm.response.json();",
+											"    pm.expect(responseBody).to.have.property(\"refresh_token\");",
+											"    pm.expect(responseBody.refresh_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token_expires_in property of type string\", () => {",
+											"    const responseBody = pm.response.json();",
+											"    pm.expect(responseBody).to.have.property(\"refresh_token_expires_in\");",
+											"    pm.expect(responseBody.refresh_token_expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"",
+											"const response = pm.response.json();",
+											"",
+											"pm.collectionVariables.set(\"access_token\", response.access_token);",
+											"pm.collectionVariables.set(\"refresh_token\", response.refresh_token);",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "tlfGcRSnCTANRmGz",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "9czFbGHAobb6VxxXo05maEAy6vuPDXIt",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "EAVL9gXRObnVhcqN",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/generate/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "tlfGcRSnCTANRmGz",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "9czFbGHAobb6VxxXo05maEAy6vuPDXIt",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://eu-west1-partner19-dev.apigee.net/v1/auth0/redirect",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/generate/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "kY5Cm9PyqKZlR3Xx",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://eu-west1-partner19-dev.apigee.net/v1/auth0/redirect",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/generate/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"generate",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RefreshAccessToken",
+					"item": [
+						{
+							"name": "RefreshAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Created\", () => {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain access_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"access_token\");",
+											"    pm.expect(response.access_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"expires_in\");",
+											"    pm.expect(response.expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"refresh_token\");",
+											"    pm.expect(response.refresh_token).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain refresh_token_expires_in property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"refresh_token_expires_in\");",
+											"    pm.expect(response.refresh_token_expires_in).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"access_token\", response.access_token);",
+											"pm.collectionVariables.set(\"refresh_token\", response.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "tlfGcRSnCTANRmGz",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "9czFbGHAobb6VxxXo05maEAy6vuPDXIt",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"refresh",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "tlfGcRSnCTANRmGz",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "9czFbGHAobb6VxxXo05maEAy6vuPDXIt",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": ""
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"refresh",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "HH7A0_h5optuElxoHoiYQO4HEFVYto7ZUZQx39W8ogxzG"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v1/auth0/refresh/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v1",
+										"auth0",
+										"refresh",
+										"token"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "VerifyAccessToken",
+					"item": [
+						{
+							"name": "VerifyAccessToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.test(\"Status code should be 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be OK\", () => {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json; charset=utf-8\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain coord property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"coord\");",
+											"    pm.expect(response.coord).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain weather property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"weather\");",
+											"    pm.expect(response.weather).to.be.a(\"array\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain base property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"base\");",
+											"    pm.expect(response.base).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain main property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"main\");",
+											"    pm.expect(response.main).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain visibility property of type array\", () => {",
+											"    pm.expect(response).to.have.property(\"visibility\");",
+											"    pm.expect(response.visibility).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain wind property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"wind\");",
+											"    pm.expect(response.wind).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain clouds property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"clouds\");",
+											"    pm.expect(response.clouds).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain dt property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"dt\");",
+											"    pm.expect(response.dt).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain sys property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"sys\");",
+											"    pm.expect(response.sys).to.be.a(\"object\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain timezone property of type object\", () => {",
+											"    pm.expect(response).to.have.property(\"timezone\");",
+											"    pm.expect(response.timezone).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain id property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"id\");",
+											"    pm.expect(response.id).to.be.a(\"number\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain name property of type string\", () => {",
+											"    pm.expect(response).to.have.property(\"name\");",
+											"    pm.expect(response.name).to.be.a(\"string\");",
+											"});",
+											"",
+											"pm.test(\"Response body should contain cod property of type number\", () => {",
+											"    pm.expect(response).to.have.property(\"cod\");",
+											"    pm.expect(response.cod).to.be.a(\"number\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v3/weather/verify?query=Texas",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v3",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Texas"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Unauthorized\", () => {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type should be application/json\", () => {",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Origin header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Headers header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Headers\", \"origin, Authorization, x-requested-with, accept, access_token\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Max-Age header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Max-Age\", \"3628800\");",
+											"});",
+											"",
+											"pm.test(\"Should have Access-Control-Allow-Methods header\", () => {",
+											"    pm.response.to.have.header(\"Access-Control-Allow-Methods\", \"GET, POST, DELETE, OPTIONS\");",
+											"});",
+											"",
+											"const schema = {",
+											"    \"error\": {",
+											"        \"code\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"message\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    }",
+											"};",
+											"",
+											"pm.test(\"Verify the Response have valid schema\", () => {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INVALID TOKEN",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v3/weather/verify?query=Texas",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v3",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Texas"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BadRequest",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code should be 400\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Reason phrase should be Bad Request\", () => {",
+											"    pm.response.to.have.status(\"Bad Request\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/v3/weather/verify?query=Delete",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"v3",
+										"weather",
+										"verify"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Delete"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "jwt",
+			"value": ""
+		},
+		{
+			"key": "refresh_token",
+			"value": ""
+		},
+		{
+			"key": "org",
+			"value": ""
+		},
+		{
+			"key": "env",
+			"value": ""
+		}
+	]
+}

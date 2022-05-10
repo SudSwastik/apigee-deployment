@@ -1,0 +1,31 @@
+  
+[
+  {
+   "email": "ansah.zargar@srijan.net",
+     "firstName": "Ansah",
+     "lastName": "Zargar",
+     "userName": "ansah.zargar",
+     "attributes": []
+  },
+  {
+   "email": "somarathi.sai@srijan.net",
+   "firstName": "Madhu sai",
+   "lastName": "Somarathi",
+   "userName": "Madhusaisomarathi",
+   "attributes": []
+  },
+  {
+    "email": "hugh@example.com",
+    "firstName": "Hugh",
+    "lastName": "Jack",
+    "userName": "hughexample",
+    "attributes": [] 
+  },
+  {
+    "email": "helloworld@apigee.com",
+    "firstName": "helloworld",
+    "lastName": "dev",
+    "userName": "helloworld",
+    "attributes": []  
+  }
+ ]
