@@ -2,6 +2,7 @@ pipeline {
   agent any
   tools {
     maven 'Maven'
+    
   }
   stages {
     stage('Pre-Build') {
