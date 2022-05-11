@@ -15,7 +15,7 @@ DELAY = sys.argv[7]
 try:
     # loading components json from build parameters
     with open('components.json') as components:
-        data = json.loads(components)
+        data = json.load(components)
         print("data=")
         print(data)
     print("Using Component Config based on repo json")
