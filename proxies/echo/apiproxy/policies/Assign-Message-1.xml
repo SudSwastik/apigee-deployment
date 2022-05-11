@@ -15,7 +15,7 @@
     <Remove>
         <Headers>
             <Header name="h1"/>
-            <Header name="h3"/>
+            <Header name="h4"/>
         </Headers>
         <QueryParams>
             <QueryParam name="q1"/>

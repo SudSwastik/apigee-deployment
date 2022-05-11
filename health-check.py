@@ -50,10 +50,10 @@ def parse_changed_components(data):
 #                 else:
 #                     health_check_urls[proxy] = urls[proxy]["url"]["npe"]
 #     return health_check_urls
-def update_healthy_proxies(proxies):
-    component_json["proxies"] = proxies
-    if len(component_json["proxies"]) <= 0 and len(component_json["sharedflows"]) <= 0:
-        component_json["tests"] = False
+# def update_healthy_proxies(proxies):
+#     component_json["proxies"] = proxies
+#     if len(component_json["proxies"]) <= 0 and len(component_json["sharedflows"]) <= 0:
+#         component_json["tests"] = False
     # component_json["tests"] = False
 # async def check_health(proxy, url, session):
 #     try:
@@ -61,13 +61,13 @@ def update_healthy_proxies(proxies):
 #             return {proxy: response.status}
 #     except Exception as e:
 #         print("Unable to get url {} due to {}.".format(url, e.__class__))
-def print_status(data):
-    print("{:<40} {:<15} {}".format("Proxy", "Status Code", "Deploying?"))
-    for proxy, status in data.items():
-        if status == 200:
-            print("{:<40} {:<15} {}".format(proxy, status, "Yes"))
-        else:
-            print("{:<40} {:<15} {}".format(proxy, status, "No"))
+# def print_status(data):
+#     print("{:<40} {:<15} {}".format("Proxy", "Status Code", "Deploying?"))
+#     for proxy, status in data.items():
+#         if status == 200:
+#             print("{:<40} {:<15} {}".format(proxy, status, "Yes"))
+#         else:
+#             print("{:<40} {:<15} {}".format(proxy, status, "No"))
 def write_changed_components(data):
     with open("components.json", "w") as components:
         components.write(data)
@@ -78,7 +78,7 @@ async def main():
     changed_files = open("changefile.txt").read().splitlines()
     print("changed_files=")
     print(changed_files)
-    healthy_proxies = []
+    # healthy_proxies = []
     # urls = json.load(open("health-check.json"))
     parse_changed_components(changed_files)
     # health_check_urls = parse_health_check_urls(branch_name, urls)
@@ -89,12 +89,12 @@ async def main():
     #             for proxy, url in health_check_urls.items()
     #         ]
     #     )
-    data = dict(ChainMap(*data))
-    for proxy, status in data.items():
-        if status == 200:
-            healthy_proxies.append(proxy)
-    update_healthy_proxies(healthy_proxies)
-    print_status(data)
+    # data = dict(ChainMap(*data))
+    # for proxy, status in data.items():
+    #     if status == 200:
+    #         healthy_proxies.append(proxy)
+    # update_healthy_proxies(healthy_proxies)
+    # print_status(data)
     write_changed_components(json.dumps(component_json, indent=2))
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
