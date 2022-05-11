@@ -6,7 +6,7 @@
         <Headers/>
         <QueryParams/>
         <FormParams/>
-        <Payload> </Payload>
+        <Payload/>
         <Verb/>
         <StatusCode/>
         <ReasonPhrase/>
@@ -14,16 +14,16 @@
     </Copy>
     <Remove>
         <Headers>
-            <Header name="h1"></Header>
-            <Header name="h2"></Header>
+            <Header name="h1"/>
+            <Header name="h2"/>
         </Headers>
         <QueryParams>
-            <QueryParam name="q1"></QueryParam>
+            <QueryParam name="q1"/>
         </QueryParams>
         <FormParams>
-            <FormParam name="f1"></FormParam>
+            <FormParam name="f1"/>
         </FormParams>
-        <Payload> </Payload>
+        <Payload/>
     </Remove>
     <Add>
         <Headers/>

@@ -7,9 +7,9 @@
     <CreatedBy>sudarshan4309@gmail.com</CreatedBy>
     <Description></Description>
     <DisplayName>echo</DisplayName>
-    <LastModifiedAt>1652262255714</LastModifiedAt>
+    <LastModifiedAt>1652279708393</LastModifiedAt>
     <LastModifiedBy>sudarshan4309@gmail.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:87f22be7927711cb0d85cb6e10dc49e0b59221ec3aedbfecf23bb4585cf952b32460750f97a99b00a5638df50726f54d1e48a2699f0e1e1a750d6ee63810993b:ap-northeast-1</ManifestVersion>
+    <ManifestVersion>SHA-512:b2345b7a2272bb7f964f989a5db7233ded255e65476d72e9d66afacbbfcebe70d1a5d859161b55f0998b1df4ad1b0adc4cbb3e6e76c575fda09ebb43bb4955ab:ap-northeast-1</ManifestVersion>
     <Policies>
         <Policy>Assign-Message-1</Policy>
     </Policies>

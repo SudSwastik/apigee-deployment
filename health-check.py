@@ -18,6 +18,7 @@ def parse_changed_components(data):
     print(data)
     for path in data:
         component = path.split("/")
+        print(component)
         if component[0] == "proxies":
             component_json["proxies"].append(component[1])
             component_json["tests"] = True
