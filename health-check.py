@@ -72,9 +72,9 @@ async def main():
     changed_files = open("changefile.txt").read().splitlines()
     print(branch_name)
     healthy_proxies = []
-    urls = json.load(open("health-check.json"))
+    # urls = json.load(open("health-check.json"))
     parse_changed_components(changed_files)
-    health_check_urls = parse_health_check_urls(branch_name, urls)
+    # health_check_urls = parse_health_check_urls(branch_name, urls)
     async with aiohttp.ClientSession() as session:
         data = await asyncio.gather(
             *[
