@@ -25,6 +25,14 @@ pipeline {
             }
         }
     }
+    stage('health check Status') {
+      steps {
+        script {
+         sh 'python3 -m pip install asyncio aiohttp --user'
+         sh 'python3 health-check.py dev changefile.txt'
+        }
+      }
+    }
     stage('Build') {
       environment {
         // Fetch Common Parameters
