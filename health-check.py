@@ -38,6 +38,8 @@ def parse_changed_components(data):
                 component_json["apps"] = True
             if component[-1] == "caches.json":
                 component_json["caches"] = True
+    print("component_json=")
+    print(component_json)
 # def parse_health_check_urls(branch_name, urls):
 #     health_check_urls = {}
 #     for proxy in urls:
