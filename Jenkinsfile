@@ -22,7 +22,6 @@ pipeline {
                     git diff --name-only HEAD~1..HEAD config/ >> changefile.txt
                     cat changefile.txt
                  '''
-              sh 'echo cat changefile.txt'
             }
         }
     }
