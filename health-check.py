@@ -70,8 +70,10 @@ def write_changed_components(data):
         components.write(data)
 async def main():
     branch_name = sys.argv[1]
+    print("branch_name=")
     print(branch_name)
     changed_files = open("changefile.txt").read().splitlines()
+    print("changed_files=")
     print(changed_files)
     healthy_proxies = []
     # urls = json.load(open("health-check.json"))
