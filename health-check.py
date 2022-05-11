@@ -14,6 +14,8 @@ component_json = {
     "tests": False,
 }
 def parse_changed_components(data):
+    print("data=")
+    print(data)
     for path in data:
         component = path.split("/")
         if component[0] == "proxies":
@@ -35,27 +37,27 @@ def parse_changed_components(data):
                 component_json["apps"] = True
             if component[-1] == "caches.json":
                 component_json["caches"] = True
-def parse_health_check_urls(branch_name, urls):
-    health_check_urls = {}
-    for proxy in urls:
-        for changed_proxy in component_json["proxies"]:
-            if proxy == changed_proxy:
-                if branch_name == "master":
-                    health_check_urls[proxy] = urls[proxy]["url"]["prod"]
-                else:
-                    health_check_urls[proxy] = urls[proxy]["url"]["npe"]
-    return health_check_urls
+# def parse_health_check_urls(branch_name, urls):
+#     health_check_urls = {}
+#     for proxy in urls:
+#         for changed_proxy in component_json["proxies"]:
+#             if proxy == changed_proxy:
+#                 if branch_name == "master":
+#                     health_check_urls[proxy] = urls[proxy]["url"]["prod"]
+#                 else:
+#                     health_check_urls[proxy] = urls[proxy]["url"]["npe"]
+#     return health_check_urls
 def update_healthy_proxies(proxies):
     component_json["proxies"] = proxies
     if len(component_json["proxies"]) <= 0 and len(component_json["sharedflows"]) <= 0:
         component_json["tests"] = False
     # component_json["tests"] = False
-async def check_health(proxy, url, session):
-    try:
-        async with session.get(url=url, ssl=False) as response:
-            return {proxy: response.status}
-    except Exception as e:
-        print("Unable to get url {} due to {}.".format(url, e.__class__))
+# async def check_health(proxy, url, session):
+#     try:
+#         async with session.get(url=url, ssl=False) as response:
+#             return {proxy: response.status}
+#     except Exception as e:
+#         print("Unable to get url {} due to {}.".format(url, e.__class__))
 def print_status(data):
     print("{:<40} {:<15} {}".format("Proxy", "Status Code", "Deploying?"))
     for proxy, status in data.items():
@@ -75,13 +77,13 @@ async def main():
     # urls = json.load(open("health-check.json"))
     parse_changed_components(changed_files)
     # health_check_urls = parse_health_check_urls(branch_name, urls)
-    async with aiohttp.ClientSession() as session:
-        data = await asyncio.gather(
-            *[
-                check_health(proxy, url, session)
-                for proxy, url in health_check_urls.items()
-            ]
-        )
+    # async with aiohttp.ClientSession() as session:
+    #     data = await asyncio.gather(
+    #         *[
+    #             check_health(proxy, url, session)
+    #             for proxy, url in health_check_urls.items()
+    #         ]
+    #     )
     data = dict(ChainMap(*data))
     for proxy, status in data.items():
         if status == 200:
