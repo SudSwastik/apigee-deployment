@@ -10,16 +10,14 @@ APIGEE_PASSWORD = sys.argv[4]
 OPTIONS = sys.argv[5]
 OVERRIDE_DELAY = sys.argv[6]
 DELAY = sys.argv[7]
-COMPONENT_JSON = '{ "kvms": false, "targetServers": false, "sharedflows": [ ], "proxies":[ "echo" ], "apiProducts": false, "developers": false, "apps": false, "tests": false }'
+# COMPONENT_JSON = '{ "kvms": false, "targetServers": false, "sharedflows": [ ], "proxies":[ "echo" ], "apiProducts": false, "developers": false, "apps": false, "tests": false }'
 # load components json
 try:
     # loading components json from build parameters
-    data = json.loads(COMPONENT_JSON)
-    print("Using Component Config based on env json")
-except IndexError:
-    # loading components json from components.json file
     with open('components.json') as components:
-        data = json.load(components)
+        data = json.loads(components)
+        print("data=")
+        print(data)
     print("Using Component Config based on repo json")
 except:
     sys.exit("Error! Please Check the Component json argument")
