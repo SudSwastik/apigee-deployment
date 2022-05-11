@@ -41,8 +41,8 @@ pipeline {
         script {
           kvms.updateJSON(env.WORKSPACE, env.PROFILE)
         }
-        sh 'python3 deploy.py $PROFILE $ORG $APIGEE_USERNAME $APIGEE_PASSWORD \
-                $OPTIONS $OVERRIDE_DELAY $DELAY $COMPONENT_JSON'
+        // sh 'python3 deploy.py $PROFILE $ORG $APIGEE_USERNAME $APIGEE_PASSWORD \
+                // $OPTIONS $OVERRIDE_DELAY $DELAY $COMPONENT_JSON'
       }
     }
   }
