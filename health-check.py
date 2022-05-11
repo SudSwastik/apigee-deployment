@@ -72,7 +72,7 @@ async def main():
     branch_name = sys.argv[1]
     print(branch_name)
     changed_files = open("changefile.txt").read().splitlines()
-    print(branch_name)
+    print(changed_files)
     healthy_proxies = []
     # urls = json.load(open("health-check.json"))
     parse_changed_components(changed_files)
