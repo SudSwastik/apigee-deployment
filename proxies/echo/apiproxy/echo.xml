@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="15" name="echo">
+<APIProxy revision="16" name="echo">
     <Basepaths>/echo</Basepaths>
     <Basepaths>/echo</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
@@ -7,9 +7,9 @@
     <CreatedBy>sudarshan4309@gmail.com</CreatedBy>
     <Description></Description>
     <DisplayName>echo</DisplayName>
-    <LastModifiedAt>1652279943050</LastModifiedAt>
+    <LastModifiedAt>1652327524569</LastModifiedAt>
     <LastModifiedBy>sudarshan4309@gmail.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:5c1ae21b30171b7bd0bd369c156c4e8695d20b04e258451e3e7af5dd0c272d16bbb5f518c438925491573d5b241759806dafdd4dc1165c819a85eeeb29d83537:ap-northeast-1</ManifestVersion>
+    <ManifestVersion>SHA-512:ed68d12192c9834cab104caf01360ae581652749a46ced1f2d5bc3670a70a42583bc9a4276bf15fba3a94efb5db2c794761c1fc92269a163b974db69ca179b29:ap-northeast-1</ManifestVersion>
     <Policies>
         <Policy>Assign-Message-1</Policy>
     </Policies>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
-        <VersionInfo resourceName="Assign-Message-1" version="SHA-512:5f41673ceac00bbc6208812534cf233f860abba7008c4e4ce278bb641d54ca3dba247d0d168283ac5f9a0540f48fa29b7ed8ed075ace0d3b204f95d3d4eadf02"/>
+        <VersionInfo resourceName="Assign-Message-1" version="SHA-512:adcfd6f390132ab123c041ae586de9362fda5a2b5bdb00c866d599f4fd9bca9ac9ad9ef41bb410bba37e61e65a42a1f996afd1e151f88ae69a032d6dcacbc0c2"/>
     </Policies>
     <ProxyEndpoints>
         <VersionInfo resourceName="default" version="SHA-512:94e2f0b4b1cc2e949f42d354d7cb44718fb5ff68de399eef2e3b2ed8bb783d1da4070c0254c61d9bf81fb23749fccf89396a9817a8ba652aa8f8f82254e13a58"/>
