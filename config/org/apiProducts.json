@@ -1,227 +1,29 @@
 [
    {
-      "apiResources": [
-         "/verify",
-         "/generate/token"
-      ],
+      "apiResources": [],
       "approvalType": "auto",
       "attributes": [
-         {
-            "name": "access",
-            "value": "internal"
-         },
-         {
-            "name": "ratelimit",
-            "value": "20pm"
-         }
+        {
+          "name": "access",
+          "value": "public"
+        },
+        {
+         "name": "abc",
+         "value": "def"
+       }
       ],
-      "createdAt": 1627879733245,
-      "createdBy": "somarathi.sai@srijan.net",
-      "description": "OAuthClient with weatherapi",
-      "displayName": "fasttrack-weatherapi-oauthclient",
+      "description": "",
+      "displayName": "Internal",
       "environments": [
-         "dev"
+        "prod",
+        "test"
       ],
-      "lastModifiedAt": 1635249527132,
-      "lastModifiedBy": "somarathi.sai@srijan.net",
-      "name": "fasttrack-weatherapi-oauthclient",
+      "name": "Internal",
       "proxies": [
-         "fasttrack-OAuthClient",
-         "fasttrack-WeatherAPI-OAuth"
-      ],
-      "quota": "100",
-      "quotaInterval": "1",
-      "quotaTimeUnit": "minute",
-      "scopes": [
-         "READ",
-         "WRITE"
-      ]
-   },
-   {
-      "apiResources": [
-         "/refresh/token",
-         "/authorize",
-         "/redirect",
-         "/verify",
-         "/generate/token"
-      ],
-      "approvalType": "auto",
-      "attributes": [
-         {
-            "name": "access",
-            "value": "public"
-         },
-         {
-            "name": "ratelimit",
-            "value": "20pm"
-         }
-      ],
-      "createdAt": 1627878238991,
-      "createdBy": "somarathi.sai@srijan.net",
-      "description": "Auth0 with weatherapi",
-      "displayName": "fasttrack-weatherapi-oauth-auth0",
-      "environments": [
-         "dev"
-      ],
-      "lastModifiedAt": 1635250016972,
-      "lastModifiedBy": "somarathi.sai@srijan.net",
-      "name": "fasttrack-weatherapi-oauth-auth0",
-      "proxies": [
-         "fasttrack-AuthCode-Auth0",
-         "fasttrack-WeatherAPI-Auth0"
-      ],
-      "quota": "100",
-      "quotaInterval": "1",
-      "quotaTimeUnit": "minute",
-      "scopes": [
-         "email",
-         "openid",
-         "profile"
-      ]
-   },
-   {
-      "apiResources": [
-         "/refresh/token",
-         "/authorize",
-         "/redirect",
-         "/revoke/token",
-         "/verify",
-         "/generate/token"
-      ],
-      "approvalType": "auto",
-      "attributes": [
-         {
-            "name": "access",
-            "value": "internal"
-         },
-         {
-            "name": "ratelimit",
-            "value": "20pm"
-         }
-      ],
-      "createdAt": 1627877948675,
-      "createdBy": "somarathi.sai@srijan.net",
-      "description": "Authcode with weatherapi",
-      "displayName": "fasttrack-weatherapi-authcode",
-      "environments": [
-         "dev"
-      ],
-      "lastModifiedAt": 1635249841616,
-      "lastModifiedBy": "somarathi.sai@srijan.net",
-      "name": "fasttrack-weatherapi-authcode",
-      "proxies": [
-         "fasttrack-OAuthAuthCode",
-         "fasttrack-WeatherAPI-OAuth"
-      ],
-      "quota": "100",
-      "quotaInterval": "1",
-      "quotaTimeUnit": "minute",
-      "scopes": [
-         "DELETE",
-         "READ",
-         "WRITE"
-      ]
-   },
-   {
-      "apiResources": [
-         "/refresh/token",
-         "/revoke/token",
-         "/verify",
-         "/generate/token"
-      ],
-      "approvalType": "auto",
-      "attributes": [
-         {
-            "name": "access",
-            "value": "internal"
-         },
-         {
-            "name": "ratelimit",
-            "value": "10pm"
-         }
-      ],
-      "createdAt": 1627877682425,
-      "createdBy": "somarathi.sai@srijan.net",
-      "description": "OAuth with weatherapi",
-      "displayName": "fasttrack-weatherapi-oauth",
-      "environments": [
-         "dev"
-      ],
-      "lastModifiedAt": 1635249673155,
-      "lastModifiedBy": "somarathi.sai@srijan.net",
-      "name": "fasttrack-weatherapi-oauth",
-      "proxies": [
-         "fasttrack-OAuthPassword",
-         "fasttrack-WeatherAPI-OAuth"
-      ],
-      "quota": "100",
-      "quotaInterval": "1",
-      "quotaTimeUnit": "minute",
-      "scopes": [
-         "READ"
-      ]
-   },
-   {
-      "apiResources": [
-         "/generate/jwt",
-         "/verify"
-      ],
-      "approvalType": "auto",
-      "attributes": [
-         {
-            "name": "access",
-            "value": "internal"
-         },
-         {
-            "name": "ratelimit",
-            "value": "10pm"
-         }
-      ],
-      "createdAt": 1627641841661,
-      "createdBy": "somarathi.sai@srijan.net",
-      "description": "Jwt with weatherapi",
-      "displayName": "fasttrack-weatherapi-jwt",
-      "environments": [
-         "dev"
-      ],
-      "lastModifiedAt": 1635249106389,
-      "lastModifiedBy": "somarathi.sai@srijan.net",
-      "name": "fasttrack-weatherapi-jwt",
-      "proxies": [
-         "fasttrack-JWT",
-         "fasttrack-WeatherAPI-JWT"
-      ],
-      "quota": "100",
-      "quotaInterval": "1",
-      "quotaTimeUnit": "minute",
-      "scopes": []
-   },
-   {
-      "apiResources": [
-         "/login",
-         "/verify"
-      ],
-      "approvalType": "auto",
-      "attributes": [
-         {
-            "name": "access",
-            "value": "internal"
-         }
-      ],
-      "createdAt": 1626676102010,
-      "createdBy": "sikender.khan@srijan.net",
-      "description": "OAuth Login App",
-      "displayName": "fasttrack-loginapp",
-      "environments": [
-         "dev"
-      ],
-      "lastModifiedAt": 1635250049768,
-      "lastModifiedBy": "somarathi.sai@srijan.net",
-      "name": "fasttrack-loginapp",
-      "proxies": [
-         "fasttrack-OAuthLoginApp",
-         "fasttrack-WeatherAPI-OAuth"
+        "account-service-1",
+        "product1a",
+        "statement-service-1"
       ],
       "scopes": []
-   }
+    }
 ]

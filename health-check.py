@@ -14,11 +14,9 @@ component_json = {
     "tests": False,
 }
 def parse_changed_components(data):
-    print("data=")
-    print(data)
+    print("data="+ str(data))
     for path in data:
         component = path.split("/")
-        print(component)
         if component[0] == "proxies":
             component_json["proxies"].append(component[1])
             component_json["tests"] = True
@@ -38,7 +36,12 @@ def parse_changed_components(data):
                 component_json["apps"] = True
             if component[-1] == "caches.json":
                 component_json["caches"] = True
-    print("component_json=")
+    # print("component_json=")
+    # print(component_json)
+def remove_duplicates_from_proxies_sharedflows():
+    print(component_json)
+    component_json["proxies"] = list( dict.fromkeys(component_json["proxies"]))
+    component_json["sharedflows"] = list( dict.fromkeys(component_json["sharedflows"]) )
     print(component_json)
 # def parse_health_check_urls(branch_name, urls):
 #     health_check_urls = {}
@@ -72,15 +75,16 @@ def write_changed_components(data):
     with open("components.json", "w") as components:
         components.write(data)
 async def main():
-    branch_name = sys.argv[1]
-    print("branch_name=")
-    print(branch_name)
+    # branch_name = sys.argv[1]
+    # print("branch_name=")
+    # print(branch_name)
     changed_files = open("changefile.txt").read().splitlines()
-    print("changed_files=")
-    print(changed_files)
+    # print("changed_files=")
+    # print(changed_files)
     # healthy_proxies = []
     # urls = json.load(open("health-check.json"))
     parse_changed_components(changed_files)
+    remove_duplicates_from_proxies_sharedflows()
     # health_check_urls = parse_health_check_urls(branch_name, urls)
     # async with aiohttp.ClientSession() as session:
     #     data = await asyncio.gather(
