@@ -58,7 +58,7 @@ for x in proxies:
 if apiProducts == True:
     os.chdir("config")
     os.system('mvn apigee-config:apiproducts -P' + PROFILE + ' -Dusername=' + APIGEE_USERNAME + ' -Dpassword=' +
-              APIGEE_PASSWORD + ' -Dorg=' + ORG + ' -Dapigee.config.options=create -Dapigee.config.dir=.')
+              APIGEE_PASSWORD + ' -Dorg=' + ORG + ' -Dapigee.config.options=update -Dapigee.config.dir=.')
     os.chdir("..")
 
 if developers == True:
