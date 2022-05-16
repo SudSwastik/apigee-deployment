@@ -25,5 +25,32 @@
         "statement-service-1"
       ],
       "scopes": []
+    },
+    {
+      "apiResources": [],
+      "approvalType": "auto",
+      "attributes": [
+        {
+          "name": "access",
+          "value": "public"
+        },
+        {
+         "name": "abc",
+         "value": "desdjbcdjksf"
+       }
+      ],
+      "description": "",
+      "displayName": "abc",
+      "environments": [
+        "prod",
+        "test"
+      ],
+      "name": "abc",
+      "proxies": [
+        "account-service-1",
+        "product1a",
+        "statement-service-1"
+      ],
+      "scopes": []
     }
 ]
