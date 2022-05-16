@@ -27,5 +27,27 @@
     "lastName": "dev",
     "userName": "helloworld",
     "attributes": []  
+  },
+  {
+    "apps": [
+      "verifyapikey",
+      "dynamic-spike",
+      "TCR",
+      "nonsecurehostheaderproxy",
+      "Internal",
+      "path-segregation-internal",
+      "Mock App",
+      "Smart",
+      "securehostheaderproxy"
+    ],
+    "companies": [],
+    "email": "sudarshan4309@gmail.com",
+    "developerId": "eff11561-acaa-4e18-bb75-3dad57f8d6cd",
+    "firstName": "Sudarshan",
+    "lastName": "Kumar",
+    "userName": "SudSwastik",
+    "organizationName": "sudarshan4309-eval",
+    "status": "active",
+    "attributes": []
   }
  ]
