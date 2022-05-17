@@ -2,7 +2,7 @@ pipeline {
   agent any
   tools {
     maven 'Maven'
-    
+    nodejs "NodeJS"
   }
   stages {
     stage('Pre-Build') {
@@ -10,6 +10,7 @@ pipeline {
         echo 'Pre-Build Stage'
         script {
           kvms = load "kvms.groovy"
+          sh 'npm install newman'
         }
       }
     }
